@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './DataTable.css'; // Import the CSS file
 
 const DataTable = () => {
   const [data, setData] = useState([]);
@@ -30,41 +31,39 @@ const DataTable = () => {
   };
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold text-center mb-6">JSON Data Table</h1>
-      <div className="flex justify-center mb-4 gap-4">
+    <div className="container">
+      <h1>JSON Data Table</h1>
+      <div className="button-container">
         <button
           onClick={handleWriteFile}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+          className="bg-blue-500"
         >
           Write JSON File
         </button>
         <button
           onClick={handleReadFile}
-          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
+          className="bg-green-500"
         >
           Read and Render JSON
         </button>
       </div>
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-300 bg-white">
+      <div className="table-container">
+        <table>
           <thead>
-            <tr className="bg-gray-200">
-              <th className="border border-gray-300 px-4 py-2 text-center">ID</th>
-              <th className="border border-gray-300 px-4 py-2 text-center">Product Title</th>
-              <th className="border border-gray-300 px-4 py-2 text-center">Price (INR)</th>
-              <th className="border border-gray-300 px-4 py-2 text-center">SKU</th>
+            <tr>
+              <th>ID</th>
+              <th>Product Title</th>
+              <th>Price (INR)</th>
+              <th>SKU</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
-              <tr key={item.product_id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2 text-center">{item.product_id}</td>
-                <td className="border border-gray-300 px-4 py-2 text-center">{item.title}</td>
-                <td className="border border-gray-300 px-4 py-2 text-center">
-                  {item.price.toFixed(2)}
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-center">{item.sku}</td>
+              <tr key={item.product_id}>
+                <td>{item.product_id}</td>
+                <td>{item.title}</td>
+                <td className="price">{item.price.toFixed(2)}</td>
+                <td>{item.sku}</td>
               </tr>
             ))}
           </tbody>
